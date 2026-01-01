@@ -6,7 +6,8 @@
   "author": "example.com",
   "homepage": "https://electron-vite.org",
   "scripts": {
-    "format": "prettier --write .",
+    "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,cjs,cts,mts}\"",
+    "prettier:format": "prettier --write \"**/*.{js,jsx,ts,tsx,cjs,cts,cts,mts}\"",
     "lint": "eslint --cache .",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
     "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
