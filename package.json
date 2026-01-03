@@ -27,6 +27,8 @@
     "electron-updater": "^6.3.9"
   },
   "devDependencies": {
+    "@cspell/dict-ru_ru": "^2.3.2",
+    "@cspell/eslint-plugin": "^9.4.0",
     "@electron-toolkit/tsconfig": "^2.0.0",
     "@types/node": "^22.19.1",
     "@types/react": "^19.2.7",
