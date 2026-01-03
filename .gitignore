@@ -1,6 +1,6 @@
+# Модули
 node_modules
-dist
+
+# Сборки
 out
-.DS_Store
-.eslintcache
-*.log*
+dist
