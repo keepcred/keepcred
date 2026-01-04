@@ -4,7 +4,7 @@ publish:
   provider: github
   owner: keepcred
   repo: keepcred
-  releaseType: release
+  releaseType: ${env.RELEASE_TYPE}
 directories:
   buildResources: build
 files:
