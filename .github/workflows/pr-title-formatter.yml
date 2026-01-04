@@ -1,0 +1,51 @@
+name: 'Auto PR Title'
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  update_pr_title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update PR Title with Emoji and Ticket
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const branchName = pr.head.ref;
+            const regex = ^(feat|fix|chore|docs|style|refactor|perf|test)\/(\d+)[-_\/](.+)$;
+            const match = branchName.match(regex);
+
+            if (!match) {
+              console.log('Имя ветки не соответствует формату "type/number-text".');
+              return;
+            }
+
+            const type = match[1];
+            const issueNumber = match[2];
+            const description = match[3].replace(/-/g, ' ');
+
+            const typeToEmoji = {
+              feat: '✨',
+              fix: '🩹',
+              chore: '⚙️',
+              docs: '📃',
+              style: '💄',
+              refactor: '🧹',
+              perf: '🚀',
+              test: '🧪'
+            };
+
+            const emoji = typeToEmoji[type] || '❔';
+            const newTitle = `#${issueNumber} ${emoji} ${type}: ${description}`;
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              title: newTitle
+            });
