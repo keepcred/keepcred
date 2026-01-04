@@ -21,6 +21,13 @@
     "build:mac": "electron-vite build && electron-builder --mac",
     "build:linux": "electron-vite build && electron-builder --linux"
   },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,mts,mjs,cts,cjs}": [
+      "npx eslint --fix",
+      "npx prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/utils": "^4.0.0",
