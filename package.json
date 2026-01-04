@@ -1,10 +1,18 @@
 {
   "name": "keepcred",
-  "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "version": "1.0.0-prerelease.1",
+  "description": "Настольный менеджер паролей с открытым исходным кодом.",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://electron-vite.org",
+  "author": {
+    "url": "https://github.com/n1k2100",
+    "name": "N1K2100",
+    "email": "n1k@the-dev.ru"
+  },
+  "homepage": "https://github.com/keepcred/keepcred",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keepcred/keepcred.git"
+  },
   "scripts": {
     "prepare": "git config core.hooksPath ./git/hooks/ || echo 'Директория не содержит репозитория (.git)'",
     "update:deps": "npx npm-check-updates -u",
@@ -21,7 +29,8 @@
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
-    "build:linux": "electron-vite build && electron-builder --linux"
+    "build:linux": "electron-vite build && electron-builder --linux",
+    "publish": "electron-builder --publish always"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,mts,mjs,cts,cjs}": [
