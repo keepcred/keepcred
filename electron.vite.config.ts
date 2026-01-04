@@ -1,5 +1,5 @@
 import { defineConfig } from 'electron-vite'
-import react from '@vitejs/plugin-react'
+import reactSwc from '@vitejs/plugin-react-swc'
 import viteTsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
@@ -10,6 +10,6 @@ export default defineConfig({
     plugins: [viteTsconfigPaths()],
   },
   renderer: {
-    plugins: [react(), viteTsconfigPaths()],
+    plugins: [reactSwc(), viteTsconfigPaths()],
   },
 })

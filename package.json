@@ -38,10 +38,13 @@
   "devDependencies": {
     "@cspell/dict-ru_ru": "^2.3.2",
     "@cspell/eslint-plugin": "^9.4.0",
+    "@swc/cli": "^0.7.9",
+    "@swc/core": "^1.15.8",
     "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
+    "@vitejs/plugin-react-swc": "^4.2.2",
     "electron": "^39.2.7",
     "electron-builder": "^26.0.12",
     "electron-vite": "^5.0.0",
