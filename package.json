@@ -6,6 +6,7 @@
   "author": "example.com",
   "homepage": "https://electron-vite.org",
   "scripts": {
+    "prepare": "git config core.hooksPath ./git/hooks/ || echo 'Директория не содержит репозитория (.git)'",
     "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,cjs,cts,mts}\"",
     "prettier:format": "prettier --write \"**/*.{js,jsx,ts,tsx,cjs,cts,cts,mts}\"",
     "lint": "eslint --cache .",
