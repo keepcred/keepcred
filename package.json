@@ -3,7 +3,11 @@
   "version": "1.0.0-prerelease.1",
   "description": "Настольный менеджер паролей с открытым исходным кодом.",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": {
+    "url": "https://github.com/n1k2100",
+    "name": "N1K2100",
+    "email": "n1k@the-dev.ru"
+  },
   "homepage": "https://github.com/keepcred/keepcred",
   "scripts": {
     "prepare": "git config core.hooksPath ./git/hooks/ || echo 'Директория не содержит репозитория (.git)'",
