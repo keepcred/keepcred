@@ -1,16 +1,15 @@
-import { resolve } from 'path'
 import { defineConfig } from 'electron-vite'
 import react from '@vitejs/plugin-react'
+import viteTsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
-  main: {},
-  preload: {},
+  main: {
+    plugins: [viteTsconfigPaths()],
+  },
+  preload: {
+    plugins: [viteTsconfigPaths()],
+  },
   renderer: {
-    resolve: {
-      alias: {
-        '@renderer': resolve('src/renderer/src')
-      }
-    },
-    plugins: [react()]
-  }
+    plugins: [react(), viteTsconfigPaths()],
+  },
 })
