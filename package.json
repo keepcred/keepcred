@@ -21,6 +21,13 @@
     "build:mac": "electron-vite build && electron-builder --mac",
     "build:linux": "electron-vite build && electron-builder --linux"
   },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,mts,mjs,cts,cjs}": [
+      "npx eslint --fix",
+      "npx prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/utils": "^4.0.0",
@@ -39,6 +46,7 @@
     "eslint": "^9.39.1",
     "eslint-plugin-import-x": "^4.16.1",
     "jiti": "^2.6.1",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
