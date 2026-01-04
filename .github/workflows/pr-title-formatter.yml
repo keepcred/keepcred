@@ -58,7 +58,7 @@ jobs:
             };
 
             const emoji = typeToEmoji[type] || '❔';
-            const newTitle = `#${issueNumber} ${emoji} ${type}: ${description}`;
+            const newTitle = `#${issueNumber} ${emoji} ${type}: ${description?.[0].toLowerCase() + description?.slice(1)}`;
 
             await github.rest.pulls.update({
               owner: context.repo.owner,
