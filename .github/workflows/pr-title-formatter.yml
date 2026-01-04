@@ -17,7 +17,7 @@ jobs:
           script: |
             const pr = context.payload.pull_request;
             const branchName = pr.head.ref;
-            const regex = ^(feat|fix|chore|docs|style|refactor|perf|test)\/(\d+)[-_\/](.+)$;
+            const regex = /^(feat|fix|chore|docs|style|refactor|perf|test)\/(\d+)[-_\/](.+)$/;
             const match = branchName.match(regex);
 
             if (!match) {
