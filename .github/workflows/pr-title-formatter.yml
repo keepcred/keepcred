@@ -6,6 +6,7 @@ on:
 
 permissions:
   pull-requests: write
+  issues: read
 
 jobs:
   update_pr_title:
@@ -27,7 +28,23 @@ jobs:
 
             const type = match[1];
             const issueNumber = match[2];
-            const description = match[3].replace(/-/g, ' ');
+
+            let description = match[3].replace(/-/g, ' ');
+
+            try {
+              const issue = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber
+              });
+
+              if (issue.data && issue.data.title) {
+                description = issue.data.title;
+                console.log(`Найден заголовок задачи: ${description}`);
+              }
+            } catch (error) {
+              console.log('Не удалось найти связанную задачу или нет прав доступа. Будет использовано имя из ветки.');
+            }
 
             const typeToEmoji = {
               feat: '✨',
