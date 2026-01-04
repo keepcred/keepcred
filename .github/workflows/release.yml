@@ -50,7 +50,7 @@ jobs:
       - name: Build & Release Electron App
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_TYPE: ${{ env.TYPE }}
+          EP_PRE_RELEASE: ${{ env.TYPE == 'prerelease' }}
         shell: bash
         run: |
           if [ "$RUNNER_OS" == "Linux" ]; then
