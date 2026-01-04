@@ -1,12 +1,20 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
-unset PREFIX
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-FILES=$(git diff --cached --name-only --diff-filter=ACM || true)
-
-if [ -n "$FILES" ]; then
-  npx lint-staged
+if ! npx --no-install lint-staged --help > /dev/null 2>&1; then
+  echo "⚠️ lint-staged not found. Skipping pre-commit hook."
+  echo "   Please run 'npm install' to enable checks."
+  exit 0
 fi
+
+echo "Running lint-staged..."
+
+npx lint-staged
+
+RESULT=$?
+
+if [ $RESULT -ne 0 ]; then
+  echo "❌ Lint-staged failed. Commit canceled."
+  exit 1
+fi
+
+exit 0
