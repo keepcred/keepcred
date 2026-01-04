@@ -9,6 +9,10 @@
     "email": "n1k@the-dev.ru"
   },
   "homepage": "https://github.com/keepcred/keepcred",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keepcred/keepcred.git"
+  },
   "scripts": {
     "prepare": "git config core.hooksPath ./git/hooks/ || echo 'Директория не содержит репозитория (.git)'",
     "update:deps": "npx npm-check-updates -u",
