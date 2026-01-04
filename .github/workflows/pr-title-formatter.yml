@@ -1,0 +1,68 @@
+name: 'Auto PR Title'
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+  issues: read
+
+jobs:
+  update_pr_title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update PR Title with Emoji and Ticket
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const branchName = pr.head.ref;
+            const regex = /^(feat|fix|chore|docs|style|refactor|perf|test)\/(\d+)[-_\/](.+)$/;
+            const match = branchName.match(regex);
+
+            if (!match) {
+              console.log('Имя ветки не соответствует формату "type/number-text".');
+              return;
+            }
+
+            const type = match[1];
+            const issueNumber = match[2];
+
+            let description = match[3].replace(/-/g, ' ');
+
+            try {
+              const issue = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber
+              });
+
+              if (issue.data && issue.data.title) {
+                description = issue.data.title;
+                console.log(`Найден заголовок задачи: ${description}`);
+              }
+            } catch (error) {
+              console.log('Не удалось найти связанную задачу или нет прав доступа. Будет использовано имя из ветки.');
+            }
+
+            const typeToEmoji = {
+              feat: '✨',
+              fix: '🩹',
+              chore: '⚙️',
+              docs: '📃',
+              style: '💄',
+              refactor: '🧹',
+              perf: '🚀',
+              test: '🧪'
+            };
+
+            const emoji = typeToEmoji[type] || '❔';
+            const newTitle = `#${issueNumber} ${emoji} ${type}: ${description?.[0].toLowerCase() + description?.slice(1)}`;
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              title: newTitle
+            });

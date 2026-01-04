@@ -1,0 +1,6 @@
+# Модули
+node_modules
+
+# Сборки
+out
+dist

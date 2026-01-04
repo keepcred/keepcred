@@ -1,0 +1,71 @@
+{
+  "name": "keepcred",
+  "version": "1.0.0-prerelease.1",
+  "description": "Настольный менеджер паролей с открытым исходным кодом.",
+  "main": "./out/main/index.js",
+  "author": {
+    "url": "https://github.com/n1k2100",
+    "name": "N1K2100",
+    "email": "n1k@the-dev.ru"
+  },
+  "homepage": "https://github.com/keepcred/keepcred",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keepcred/keepcred.git"
+  },
+  "scripts": {
+    "prepare": "git config core.hooksPath ./git/hooks/ || echo 'Директория не содержит репозитория (.git)'",
+    "update:deps": "npx npm-check-updates -u",
+    "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,cjs,cts,mts}\"",
+    "prettier:format": "prettier --write \"**/*.{js,jsx,ts,tsx,cjs,cts,cts,mts}\"",
+    "lint": "eslint --cache .",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
+    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "start": "electron-vite preview",
+    "dev": "electron-vite dev",
+    "build": "npm run typecheck && electron-vite build",
+    "postinstall": "electron-builder install-app-deps",
+    "build:unpack": "npm run build && electron-builder --dir",
+    "build:win": "npm run build && electron-builder --win",
+    "build:mac": "electron-vite build && electron-builder --mac",
+    "build:linux": "electron-vite build && electron-builder --linux",
+    "publish": "electron-builder --publish always"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,mts,mjs,cts,cjs}": [
+      "npx eslint --fix",
+      "npx prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@electron-toolkit/preload": "^3.0.2",
+    "@electron-toolkit/utils": "^4.0.0",
+    "electron-updater": "^6.6.2"
+  },
+  "devDependencies": {
+    "@cspell/dict-ru_ru": "^2.3.2",
+    "@cspell/eslint-plugin": "^9.4.0",
+    "@swc/cli": "^0.7.9",
+    "@swc/core": "^1.15.8",
+    "@types/node": "^25.0.3",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "@vitejs/plugin-react-swc": "^4.2.2",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12",
+    "electron-vite": "^5.0.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-import-x": "^4.16.1",
+    "jiti": "^2.6.1",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0",
+    "vite-tsconfig-paths": "^6.0.3"
+  }
+}

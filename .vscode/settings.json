@@ -1,0 +1,24 @@
+{
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.defaultFormatter": "prettier.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+
+  "[typescript]": {
+    "editor.defaultFormatter": "prettier.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "prettier.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "prettier.prettier-vscode"
+  },
+
+  "material-icon-theme.folders.associations": {
+    "preload": "scripts",
+    "renderer": "client"
+  }
+}
