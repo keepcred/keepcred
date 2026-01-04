@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+unset PREFIX
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+FILES=$(git diff --cached --name-only --diff-filter=ACM || true)
+
+if [ -n "$FILES" ]; then
+  npx lint-staged
+fi
