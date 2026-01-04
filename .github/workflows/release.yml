@@ -41,7 +41,7 @@ jobs:
 
           if [[ "$TAG_NAME" == *"-"* ]]; then
             echo "Detected prerelease tag. Setting mode to DRAFT."
-            echo "TYPE=draft" >> $GITHUB_ENV
+            echo "TYPE=prerelease" >> $GITHUB_ENV
           else
             echo "Detected stable tag. Setting mode to RELEASE."
             echo "TYPE=release" >> $GITHUB_ENV
@@ -50,5 +50,15 @@ jobs:
       - name: Build & Release Electron App
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EP_PRE_RELEASE: ${{ env.TYPE == 'prerelease' }}
+        shell: bash
         run: |
-          npx electron-builder --config electron-builder.yml --publish always -c.publish.releaseType=${{ env.TYPE }}
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            ARGS="--linux"
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            ARGS="--win"
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            ARGS="--mac"
+          fi
+
+          npx electron-builder --config electron-builder.yml --publish always $ARGS
