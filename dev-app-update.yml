@@ -1,3 +1,4 @@
-provider: generic
-url: https://example.com/auto-updates
-updaterCacheDirName: draft-updater
+provider: github
+owner: keepcred
+repo: keepcred
+releaseType: release
