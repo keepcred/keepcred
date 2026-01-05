@@ -5,7 +5,7 @@ import cspell from '@cspell/eslint-plugin'
 /**
  * Разрешённые пути для проверки Eslint
  */
-const ALLOW_PATHS = ['./src/**/*.{js,ts,jsx,tsx,mjs,mts,cts,cjs}']
+const ALLOW_ECMA_PATHS = ['./src/**/*.{js,ts,jsx,tsx,mjs,mts,cts,cjs}']
 
 /**
  * Конфигурация Eslint
