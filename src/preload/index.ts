@@ -1,5 +1,6 @@
 import { contextBridge } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { exposeElectronTRPC } from 'trpc-electron/main'
 
 const api = {}
 
@@ -16,3 +17,7 @@ if (process.contextIsolated) {
   // @ts-ignore (define in dts)
   window.api = api
 }
+
+process.once('loaded', async () => {
+  exposeElectronTRPC()
+})

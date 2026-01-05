@@ -2,8 +2,10 @@ import { join } from 'path'
 
 import { app, BrowserWindow, shell } from 'electron'
 import { is } from '@electron-toolkit/utils'
+import { createIPCHandler } from 'trpc-electron/main'
 
 import { ENV } from '../env'
+import { routerTRpc } from '../routers'
 
 /**
  * Основное окно приложения
@@ -20,6 +22,11 @@ const WINDOW_MAIN = new BrowserWindow({
     preload: join(__dirname, '../../preload/index.js'),
     sandbox: false,
   },
+})
+
+createIPCHandler({
+  router: routerTRpc,
+  windows: [WINDOW_MAIN],
 })
 
 WINDOW_MAIN.on('closed', () => {
