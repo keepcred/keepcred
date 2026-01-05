@@ -1,55 +1,29 @@
-import { join } from 'path'
+import { app, BrowserWindow } from 'electron'
+import { electronApp, optimizer } from '@electron-toolkit/utils'
 
-import { app, shell, BrowserWindow } from 'electron'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+import { logger } from './logger'
 
-import icon from '../../resources/icon.png?asset'
+app.disableHardwareAcceleration()
 
-function createWindow(): void {
-  const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
-    show: false,
-    autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
-    webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
-    }
-  })
-
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
-  })
-
-  mainWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url)
-    return { action: 'deny' }
-  })
-
-  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
-  } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
-  }
-}
+app.on('before-quit', () => {
+  logger.info('Приложение закрыто')
+})
 
 app.whenReady().then(() => {
-  electronApp.setAppUserModelId('com.electron')
+  logger.warn('Приложение готово к запуску')
+
+  const userModelId = 'com.keepcred'
+
+  electronApp.setAppUserModelId(userModelId)
+  logger.info(`Задан ID приложения: ${userModelId}`)
 
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  createWindow()
+  import('#/main/windows/window-main')
 
   app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0) import('#/main/windows/window-main')
   })
-})
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
 })
