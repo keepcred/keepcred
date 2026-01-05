@@ -2,4 +2,6 @@ import:
   - '@cspell/dict-ru_ru/cspell-ext.json'
 language: ru, ru-ru
 words:
+  - treeify
   - keepcred
+  - optimizer
