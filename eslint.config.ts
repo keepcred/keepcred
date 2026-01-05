@@ -1,6 +1,7 @@
 import { defineConfig } from 'eslint/config'
 import importX from 'eslint-plugin-import-x'
 import cspell from '@cspell/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
 
 /**
  * Разрешённые пути для проверки Eslint
@@ -12,7 +13,13 @@ const ALLOW_ECMA_PATHS = ['./src/**/*.{js,ts,jsx,tsx,mjs,mts,cts,cjs}']
  */
 const config = defineConfig(
   {
-    files: ALLOW_PATHS,
+    files: ALLOW_ECMA_PATHS,
+    languageOptions: {
+      parser: tsParser,
+    },
+  },
+  {
+    files: ALLOW_ECMA_PATHS,
     plugins: { importX },
     rules: {
       'importX/first': 2,
@@ -44,7 +51,7 @@ const config = defineConfig(
     },
   },
   {
-    files: ALLOW_PATHS,
+    files: ALLOW_ECMA_PATHS,
     plugins: { cspell },
     rules: {
       'cspell/spellchecker': [
