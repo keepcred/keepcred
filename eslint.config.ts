@@ -51,7 +51,7 @@ const config = defineConfig(
         1,
         {
           autoFix: true,
-          configFile: ['./cspell.config.yml', '@cspell/dict-ru-ru'],
+          configFile: './cspell.config.yml',
           cspellOptionsRoot: import.meta.url,
         },
       ],
