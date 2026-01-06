@@ -8,3 +8,7 @@ dist
 # ENV
 *.env*
 !.env.example
+
+# Сгенерированный код
+/src/generated/*
+
