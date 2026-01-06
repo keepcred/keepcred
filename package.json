@@ -1,6 +1,6 @@
 {
   "name": "keepcred",
-  "version": "1.0.0-prerelease.1",
+  "version": "1.0.0-prerelease.2",
   "description": "Настольный менеджер паролей с открытым исходным кодом.",
   "main": "./out/main/index.js",
   "engines": {
