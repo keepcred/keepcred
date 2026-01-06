@@ -1,3 +1,4 @@
+import { App as AntdApp, ConfigProvider as AntdConfigProvider } from 'antd'
 import { useSignals, useSignal } from '@preact/signals-react/runtime'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
@@ -12,7 +13,11 @@ export const App = () => {
   return (
     <>
       <tRpcClientReact.Provider client={client.value} queryClient={clientTanstack.value}>
-        <QueryClientProvider client={clientTanstack.value}></QueryClientProvider>
+        <QueryClientProvider client={clientTanstack.value}>
+          <AntdConfigProvider>
+            <AntdApp></AntdApp>
+          </AntdConfigProvider>
+        </QueryClientProvider>
       </tRpcClientReact.Provider>
     </>
   )
