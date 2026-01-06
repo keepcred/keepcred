@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 
+import './prisma'
 import { logger } from './logger'
 
 app.disableHardwareAcceleration()

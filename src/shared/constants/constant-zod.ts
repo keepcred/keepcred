@@ -46,6 +46,10 @@ export const ZOD_ENV = z.object({
    */
   VITE_ELECTRON_WINDOW_DEFAULT_HEIGHT: ZOD_ENV_OPTIONAL_READONLY_NUMBER(670),
   /**
+   * Путь до файла БД
+   */
+  VITE_DATABASE_URL: z.preprocess((value) => value ? value : undefined, z.string().optional().default('file:./dev.db').readonly()),
+  /**
    * Ссылка на рендер
    */
   ELECTRON_RENDERER_URL: z.string().optional(),

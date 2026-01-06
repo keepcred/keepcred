@@ -5,6 +5,7 @@
       "#/shared/*": ["./src/shared/*"],
       "#/preload/*": ["./src/preload/*"],
       "#/renderer/*": ["./src/renderer/*"],
+      "#/package": ["./package.json"],
       "#/*": ["./src/*"]
     },
     "strict": true,
