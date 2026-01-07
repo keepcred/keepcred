@@ -9,12 +9,10 @@ datasource db {
 
 // Модель профиля пользователя
 model Profile {
-  // Уникальный идентификатор пользователя
-  id       String @id @default(uuid())
   // Имя пользователя
-  username String
+  username     String   @id
   // Мастер-пароль пользователя в виде хэша
-  password String
-
-  @@unique([id, username])
+  password     String
+  // Дата регистрации пользователя
+  registeredAt DateTime @default(now())
 }
