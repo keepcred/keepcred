@@ -1,10 +1,12 @@
-import { router } from "../trpc";
+import { router } from '../trpc'
 
-import { routerApp } from "./router-app";
+import { routerApp } from './router-app'
+import { routerAuthorization } from './router-authorization'
 
 /**
  * Маршрутизатор tRPC
  */
 export const routerTRpc = router({
-  app: routerApp
+  app: routerApp,
+  authorization: routerAuthorization,
 })
