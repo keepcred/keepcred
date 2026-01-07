@@ -54,3 +54,17 @@ export const ZOD_ENV = z.object({
    */
   ELECTRON_RENDERER_URL: z.string().optional(),
 })
+
+/**
+ * Zod схема авторизации
+ */
+export const ZOD_AUTHORIZATION = z.object({
+  /**
+   * Наименование пользователя
+   */
+  username: z.string(),
+  /**
+   * Мастер-пароль пользователя
+   */
+  password: z.string(),
+})
