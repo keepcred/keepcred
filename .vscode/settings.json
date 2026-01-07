@@ -13,6 +13,9 @@
   "[javascript]": {
     "editor.defaultFormatter": "prettier.prettier-vscode"
   },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
   "[json]": {
     "editor.defaultFormatter": "prettier.prettier-vscode"
   },
