@@ -15,3 +15,6 @@ dist
 # Сгенерированный код
 /src/generated/*
 
+# Storybook
+*storybook.log
+storybook-static

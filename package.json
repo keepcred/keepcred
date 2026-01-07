@@ -33,7 +33,9 @@
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
     "build:linux": "electron-vite build && electron-builder --linux",
-    "publish": "electron-builder --publish always"
+    "publish": "electron-builder --publish always",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,mts,mjs,cts,cjs}": [
@@ -85,6 +87,9 @@
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-tsconfig-paths": "^6.0.3",
-    "zod": "^4.3.5"
+    "zod": "^4.3.5",
+    "storybook": "^10.1.11",
+    "@storybook/react-vite": "^10.1.11",
+    "eslint-plugin-storybook": "^10.1.11"
   }
 }
