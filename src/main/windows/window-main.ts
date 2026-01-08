@@ -48,7 +48,7 @@ WINDOW_MAIN.webContents.setWindowOpenHandler((details) => {
 if (is.dev && ENV.ELECTRON_RENDERER_URL) {
   WINDOW_MAIN.loadURL(ENV.ELECTRON_RENDERER_URL)
 } else {
-  WINDOW_MAIN.loadFile(join(__dirname, '../../renderer/index.html'))
+  WINDOW_MAIN.loadFile(join(__dirname, '../renderer/index.html'))
 }
 
 export { WINDOW_MAIN }
