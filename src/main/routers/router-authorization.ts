@@ -3,6 +3,7 @@ import { ZOD_AUTHORIZATION, ErrorAuthorization } from '#/shared'
 import { PRISMA } from '../prisma'
 import { procedure, router } from '../trpc'
 import { ServiceAuthorization, ServiceCrypto } from '../services'
+import { logger } from '../logger'
 
 export let memoryDek: Buffer | null = null
 
@@ -16,11 +17,19 @@ export const routerAuthorization = router({
   register: procedure.input(ZOD_AUTHORIZATION).query(async (request) => {
     const { username, password } = request.input
 
-    const profileIsExisted = await PRISMA.profile.findFirst({
-      where: {
-        username
-      }
-    })
+    let profileIsExisted: Awaited<ReturnType<typeof PRISMA.profile.findFirst>>
+
+    try {
+      profileIsExisted = await PRISMA.profile.findFirst({
+        where: {
+          username,
+        },
+      })
+    } catch (error) {
+      logger.error(error)
+
+      throw new ErrorAuthorization('Критическая ошибка: не удалось обратиться к БД', username)
+    }
 
     if (profileIsExisted) {
       throw new ErrorAuthorization('Профиль с таким именем уже существует', username)
@@ -32,17 +41,23 @@ export const routerAuthorization = router({
     const kek = ServiceCrypto.deriveKeyFromPassword(password, kekSalt)
     const encryptedDek = ServiceCrypto.encrypt(rawDEK, kek)
 
-    await PRISMA.profile.create({
-      data: {
-        username,
-        passwordHash: passwordHash.hash,
-        passwordSalt: passwordHash.salt,
-        kekSalt,
-        dekIv: encryptedDek.iv,
-        dekTag: encryptedDek.tag,
-        dekContent: encryptedDek.content,
-      },
-    })
+    try {
+      await PRISMA.profile.create({
+        data: {
+          username,
+          passwordHash: passwordHash.hash,
+          passwordSalt: passwordHash.salt,
+          kekSalt,
+          dekIv: encryptedDek.iv,
+          dekTag: encryptedDek.tag,
+          dekContent: encryptedDek.content,
+        },
+      })
+    } catch (error) {
+      logger.error(error)
+
+      throw new ErrorAuthorization('Критическая ошибка: не удалось сохранить данные авторизации в БД', username)
+    }
 
     memoryDek = rawDEK
 
@@ -82,7 +97,9 @@ export const routerAuthorization = router({
       )
 
       memoryDek = dekBuffer
-    } catch {
+    } catch (error) {
+      logger.error(error)
+
       throw new ErrorAuthorization('Критическая ошибка: не удалось расшифровать мастер-ключ', username)
     }
 
