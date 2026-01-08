@@ -12,7 +12,17 @@ model Profile {
   // Имя пользователя
   username     String   @id
   // Мастер-пароль пользователя в виде хэша
-  password     String
+  passwordHash String
+  // Соль мастер-пароля
+  passwordSalt String
+  // Соль KEK
+  kekSalt      String
+  // IV расшифровки dek
+  dekIv        String
+  // Тег проверки целостности DEK
+  dekTag       String
+  // Зашифрованный DEK
+  dekContent   String
   // Дата регистрации пользователя
   registeredAt DateTime @default(now())
 }
