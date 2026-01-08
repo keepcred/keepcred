@@ -6,6 +6,9 @@ import './styles/sass/index.sass'
 import { tRpcClient, tRpcClientReact } from './trpc'
 import { AppRouter } from './routers'
 
+/**
+ * Компонент приложения
+ */
 export const App = () => {
   useSignals()
 
