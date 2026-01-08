@@ -2,6 +2,7 @@ import { App as AntdApp, ConfigProvider as AntdConfigProvider } from 'antd'
 import { useSignals, useSignal } from '@preact/signals-react/runtime'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
+import './styles/sass/index.sass'
 import { tRpcClient, tRpcClientReact } from './trpc'
 
 export const App = () => {
