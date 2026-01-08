@@ -1,7 +1,7 @@
 import { LockOutlined, LoginOutlined, UserAddOutlined, UserOutlined } from '@ant-design/icons'
 import { Button, Divider, Form, FormRule, Input, message, Space, Tooltip } from 'antd'
 
-import { AuthorizationData } from '#/shared/types/type-authorization'
+import { AuthorizationData } from '#/shared'
 
 import { AppForm } from '../components'
 import { tRpcClient } from '../trpc'
