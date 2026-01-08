@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
 import './styles/sass/index.sass'
 import { tRpcClient, tRpcClientReact } from './trpc'
+import { AppRouter } from './routers'
 
 export const App = () => {
   useSignals()
@@ -16,7 +17,9 @@ export const App = () => {
       <tRpcClientReact.Provider client={client.value} queryClient={clientTanstack.value}>
         <QueryClientProvider client={clientTanstack.value}>
           <AntdConfigProvider>
-            <AntdApp></AntdApp>
+            <AntdApp style={{ height: '100%' }}>
+              <AppRouter />
+            </AntdApp>
           </AntdConfigProvider>
         </QueryClientProvider>
       </tRpcClientReact.Provider>
