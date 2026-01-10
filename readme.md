@@ -62,4 +62,16 @@ npm i
 cp .env.example .env
 ```
 
+4. Сгенерируйте код схемы **Prisma**:
+
+```sh
+npx prisma generate
+```
+
+5. Осуществите deploy **Prisma**:
+
+```sh
+npx prisma migrate deploy
+```
+
 ✅ **Готово!**
