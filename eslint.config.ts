@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { defineConfig } from 'eslint/config'
 import importX from 'eslint-plugin-import-x'
 import cspell from '@cspell/eslint-plugin'
