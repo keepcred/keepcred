@@ -31,7 +31,6 @@ const config = defineConfig(
       'importX/no-absolute-path': 2,
       'importX/no-unused-modules': 2,
       'importX/no-rename-default': 2,
-      'importX/no-mutable-exports': 2,
       'importX/no-named-as-default': 2,
       'importX/newline-after-import': 2,
       'importX/consistent-type-specifier-style': 2,
