@@ -47,7 +47,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/utils": "^4.0.0",
-    "better-sqlite3": "^12.5.0",
+    "better-sqlite3": "^12.6.0",
     "dotenv": "^17.2.3",
     "electron-updater": "^6.7.3",
     "prisma": "^7.2.0"
