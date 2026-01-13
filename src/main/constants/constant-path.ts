@@ -4,7 +4,7 @@ import { app } from 'electron'
 
 import { ENV } from '../env'
 
-import { PROJECT_IS_DEV, PROJECT_NAME } from './constant-project'
+import { PROJECT_IS_DEV } from './constant-project'
 
 /**
  * Путь до папки пользовательских данных
@@ -14,7 +14,7 @@ const PATH_DIRECTORY_USER_DATA = app.getPath('userData')
 /**
  * Путь до директории приложения
  */
-export const PATH_DIRECTORY_APP = join(PATH_DIRECTORY_USER_DATA, PROJECT_NAME)
+export const PATH_DIRECTORY_APP = PATH_DIRECTORY_USER_DATA
 
 /**
  * Путь до файла БД приложения
