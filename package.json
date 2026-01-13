@@ -55,7 +55,7 @@
   "devDependencies": {
     "@ant-design/icons": "^6.1.0",
     "@cspell/dict-ru_ru": "^2.3.2",
-    "@cspell/eslint-plugin": "^9.4.0",
+    "@cspell/eslint-plugin": "^9.6.0",
     "@preact/signals-react": "^3.6.1",
     "@prisma/adapter-better-sqlite3": "^7.2.0",
     "@prisma/client": "^7.2.0",
