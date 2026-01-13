@@ -73,7 +73,7 @@
     "@typescript-eslint/parser": "^8.52.0",
     "@vitejs/plugin-react": "^5.1.2",
     "@vitejs/plugin-react-swc": "^4.2.2",
-    "antd": "^6.1.4",
+    "antd": "^6.2.0",
     "electron": "^39.2.7",
     "electron-builder": "^26.4.0",
     "electron-log": "^5.4.3",
