@@ -62,7 +62,7 @@
     "@storybook/react-vite": "^10.1.11",
     "@swc/cli": "^0.7.10",
     "@swc/core": "^1.15.8",
-    "@tanstack/react-query": "^5.90.16",
+    "@tanstack/react-query": "^5.90.17",
     "@trpc/client": "^11.8.1",
     "@trpc/react-query": "^11.8.1",
     "@trpc/server": "^11.8.1",
