@@ -1,6 +1,7 @@
 appId: com.electron.app
 productName: keepcred
 compression: maximum
+asar: true
 publish:
   provider: github
   owner: keepcred
